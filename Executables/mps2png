@@ -1,0 +1,15 @@
+#!/bin/tcsh
+foreach ifl (*.ps)
+	echo 'converting' $ifl
+	set fl = `echo $ifl | cut -d. -f1`
+	identify $ifl > out
+	set x = `awk '{print $3}' out | cut -dx -f1`
+	set y = `awk '{print $3}' out | cut -dx -f2`
+	set ppm = ${fl}001.ppm
+	set png = ${fl}.png
+	echo $x' x '$y
+	pstopnm -xborder=0 -yborder=0 -xsize=$x -ysize=$y $ifl
+	pnmtopng $ppm > $png
+	rm -f $ppm
+end
+rm -fv out

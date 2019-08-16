@@ -1,0 +1,9 @@
+.DS_Store
+git-cheat-sheet.pdf
+Cee/SciNet/*
+FORTran/SciNet/*
+Lessons/*
+Algorithmia/*
+python/__pycache__/*
+python/*.png
+python/*.txt

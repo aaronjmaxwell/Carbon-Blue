@@ -1,0 +1,8 @@
+#!/bin/tcsh
+foreach ifl (*.png)
+	echo 'converting' $ifl
+	set fl = `echo $ifl | cut -d. -f1`
+	set png = ${fl}.png
+	set jpg = ${fl}.jpg
+	convert $png $jpg
+end

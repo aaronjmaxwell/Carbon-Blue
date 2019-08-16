@@ -1,0 +1,1 @@
+ffmpeg -loglevel quiet -i $1.mp4 -acodec libvorbis -ac 1 $1.ogg

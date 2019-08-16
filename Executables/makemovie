@@ -1,0 +1,50 @@
+#!/bin/bash
+
+#This script takes all the png files in a directory in order and turns them into a movie (mp4 format).
+#
+# Calling sequence: makemovie -b basename -fps 10 -o outname
+
+function usage(){
+    echo "For usage instructions or help, type makemovie -h"
+    exit
+}
+
+if [ $# -eq 0 ]; then
+    echo "For usage instructions or help, type makemovie -h"
+    exit
+fi
+
+while [ $# -gt 0 ]; do
+    case $1 in
+    -h) echo -e "\n     MakeMovie: v1.0 - Written by Mikhail Klassen"
+        echo -e "\n     This scripts creates a movie from all the ordered png files in a directory."
+        echo -e "     The user sets the 'basename' that each png file must have at the start of its filename."
+        echo -e "     The output file is encoded in mpeg4, so it is recommended the user give the output file an mp4 extension."
+        echo -e "\n  Calling sequence: makemovie -b basename -fps 10 -o outname"
+        echo -e "\n  e.g.\n  movie0001.png\n  movie0002.png\n  movie0003.png\n  movie0004.png\n  movie0005.png"
+        echo -e "\n  To compile these into a single video, run: makemovie -b movie -fps 2 -o myvideo.mp4 \n"; exit ;;
+    -b) basename="$2"; shift 2 ;;    
+    -fps) fps="$2"; shift 2 ;;
+    -o) outname="$2"; shift 2 ;;
+    *)  usage;;
+    esac
+done
+
+PIC_DIR=`pwd`
+echo ""
+echo "Current working directory:"
+echo $PIC_DIR
+
+echo ""
+echo "Movie files basename:"
+echo $basename
+
+echo ""
+echo "Frames per second:"
+echo $fps
+
+echo ""
+echo "Output:"
+echo $outname
+
+mencoder mf://$PIC_DIR/\*.jpg -mf fps=$fps:type=jpg -oac copy -ovc lavc -lavcopts vcodec=mpeg4 -of lavf -o $outname

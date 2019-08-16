@@ -1,0 +1,12 @@
+#!/bin/tcsh
+foreach ifl (*.ps)
+	echo 'converting' $ifl
+	set fl = `echo $ifl | cut -d. -f1`
+	set ppm = ${fl}001.ppm
+	set png = ${fl}.png
+	set jpg = ${fl}.jpg
+	pstopnm -xborder=0 -yborder=0 -xsize=1512 -ysize=1080 $ifl
+	pnmtopng $ppm > $png
+	convert $png $jpg
+	rm -f $ppm $png
+end
