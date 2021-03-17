@@ -7,3 +7,15 @@ Algorithmia/*
 python/__pycache__/*
 python/*.png
 python/*.txt
+python/scikit-learn/DATA
+python/scikit-learn/*.png
+python/.idea/
+python/venv/
+python/*.pyc
+python/instance/
+python/.pytest_cache/
+python/.coverage
+python/htmlcov/
+python/dist/
+python/build/
+python/*.egg-info/
