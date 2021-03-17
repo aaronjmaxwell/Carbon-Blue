@@ -1,5 +1,0 @@
-pstopnm -xborder=0 -yborder=0 -xsize=1512 -ysize=1080 $1.ps
-pnmtopng $1001.ppm > $1.png
-rm -f $1001.ppm
-convert $1.png $1.jpg
-rm -f $1.png
