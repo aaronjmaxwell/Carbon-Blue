@@ -18,8 +18,9 @@ def triggers(app):
     def show_user(username):
         """Retrieve user name from URL.
 
-        Under the http://localhost:5000/user/<username>, the variable
-        username contains 'username' which can be passed into the app.
+        Under the http://localhost:5000/user/<username>, the variable username
+        contains 'username' which can be passed into the app.
+
         For example, http://localhost:5000/user/sepultura.
 
         :param username: The page user's name. :type str
@@ -56,9 +57,10 @@ def triggers(app):
     def show_sub_path(s):
         """Special Flask Class for sub paths.
 
-        This special variable allows us to fetch the various sub paths
-        that we might want to access. For example,
-        http://localhost:5000/subpaths/through/the/looking/glass
+        This special variable allows us to fetch the various sub paths that we
+        might want to access.
+
+        For example, http://localhost:5000/subpaths/through/the/looking/glass
 
         :param s: Sub path to retrieve. :type str
 

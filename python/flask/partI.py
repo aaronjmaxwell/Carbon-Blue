@@ -24,8 +24,8 @@ def base(app):
     def hello():
         """Sub-Routing.
 
-        We define a second route that can be used to get the familiar
-        greeting at http://localhost:5000/hello
+        We define a second route that can be used to get the familiar greeting
+        at http://localhost:5000/hello
         """
         return "Hello, World!\n"
 
