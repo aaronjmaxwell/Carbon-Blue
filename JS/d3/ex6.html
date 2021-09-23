@@ -1,0 +1,31 @@
+<html>
+<head>
+  <title>
+    BarChartFunction(Data)
+  </title>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+  <h1>Using a Function to Draw the Bar Chart</h1>
+  <p><a href="./ex5.html">Prev</a>  <a href="./ex7.html">Next</a></p>
+  <script>
+    var w = 500;
+    var h = 150;
+    var ratData = [400, 900, 300, 600]; // our default data
+    var svg = d3.select("body").append("svg").attr("width", w).attr("height", h);
+    
+    function drawChart(dArr){
+      var selxn =  svg.selectAll("rect").data(dArr);
+      selxn.enter().append('rect')
+        .attr("x", function(x, i){return i * 25;})
+        .attr("width", 15).attr("fill", "#b00b00")
+        .merge(selxn)
+        .attr("y", function(x){return h - x/10 * 1.5;})
+        .attr("height", function(x){return x/10. * 1.5;});
+      selxn.exit().remove();
+      return 0;
+    }
+    drawChart(ratData);
+  </script>
+</body>
+</html>

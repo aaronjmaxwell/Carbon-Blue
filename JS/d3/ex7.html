@@ -1,0 +1,44 @@
+<html>
+<head>
+  <title>A D3 Map of Bawston</title>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="neighbourhoods.js"></script>
+</head>
+<body>
+  <h1>Boston</h1>
+  <p><a href="./ex6.html">Prev</a>  <a href="./ex8.html">Next</a></br>Neighbourhoods coloured logarithmically by density.</p>
+  <script>
+    /* Use this function to set type of blue used */
+    function toColor(d) {
+      var b = Math.round(Math.log(d + 0.05) / 5. * 255)
+      if (b < 16){b = 16;}
+      if (b > 240){b = 240;}
+      console.log(b)
+      return "#0000" + [b.toString(16)].join("");
+      //return "#" + [r.toString(16), g.toString(16), b.toString(16)].join("");
+    }
+    /*The first part of this script is understandable.  Select and append an <svg>*/
+    var w = 600, h = 700;
+    var svg = d3.select("body").append("svg").attr("width", w).attr("height", h);
+    /*Here we append a group that will serve to highlight neighbourhoods later.*/
+    var g = svg.append("g");
+    /*The d3 projection methods take as input Latitude and Longitude coordinates, and return device
+    coordinate values.  The scale method represents the zoom.  Depending on the projection, one will
+    either need one or both of rotate and center to properly centre the image.  Finally, the image
+    is translated in pixel coordinates so that the centre of the viewing area is coincident with the
+    center of the projection.*/
+    var proj = d3.geoAlbers()
+      .scale(190000).rotate([71.057, 0]).center([0, 42.313]).translate([h/2, w/2]);
+    /*This function converts the latitude and longitudinal points into an SVG path specified in
+    device coordinates via the projection we specified above.*/
+    var geoPath = d3.geoPath().projection(proj);
+    /*We select the generic path variable, and pass it the lat/lon data contained in the JSON object
+    neighbourhoods.  We fill the path (generic shape) object and set the path coordinates using
+    the geoPath function we defined above.*/
+    g.selectAll("path").data(neighbourhoods_json.features).enter().append("path")
+      .attr("fill", function(x) {return toColor(x.properties.density);})
+      //.attr("fill-opacity", function(x) {return x.properties.density / 40;})
+      .attr("d", geoPath);
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+<head>
+  <title>
+    Adding More Bars
+  </title>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+  <h1>Using the Enter and Merge Methods to add a Fifth Bar</h1>
+  <p><a href="./ex3.html">Prev</a>  <a href="./ex5.html">Next</a></p>
+  <script>
+    var w = 500;
+    var h = 150;
+    var ratData = [400, 900, 300, 600];
+    var svg = d3.select("body").append("svg").attr("width", w).attr("height", h);
+    svg.selectAll("rect").data(ratData).enter().append("rect")
+      .attr("x", function(x, i){return i * 25;})
+      .attr("y", function(x){return h - x/10 * 1.5;})
+      .attr("height", function(x){return x/10. * 1.5;})
+      .attr("width", 15).attr("fill", "#b8d1c9");
+    /*We want to put in a fifth value for the data. We first assign the previously created <rect>s
+    to the variable *selxn* and assign it the new data.  We then create the fifth <rect> via the
+    enter method (seen in ex2.html) and set the _x_, _width_, and _fill_ for this fifth <rect>.
+    However, we need to merge back into the original selectAll in order to set the _y_ and _height_
+    attributes for all the bars, since these depend on the *newData* fed into the <svg> <rect>s.
+    If we do not do this last step, the _y_ and _height_ would only be set for the fifth bar, while
+    the first four bars would have their attributes set by the original attribution above.*/
+    var newData = [800, 200, 400, 500, 100];
+    selxn = svg.selectAll("rect").data(newData);
+    selxn.enter().append('rect')
+      .attr("x", function(x, i){return i * 25;})
+      .attr("width", 15).attr("fill", "#b8d1c9")
+      .merge(selxn)
+      .attr("y", function(x){return h - x/10 * 1.5;})
+      .attr("height", function(x){return x/10. * 1.5;});
+  </script>
+</body>
+</html>

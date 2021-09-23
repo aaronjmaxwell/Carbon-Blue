@@ -1,0 +1,34 @@
+<html>
+<head>
+  <title>
+    Dynamic Bar Chart
+  </title>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+  <h1>A Bar Chart Where the Bars are Created Iteratively</h1>
+  <p><a href="./ex1.html">Prev</a>  <a href="./ex3.html">Next</a></p>
+  <script>
+    var w = 500;
+    var h = 150;
+    var ratData = [400, 900, 300, 600];
+    /*Notice above we have not created the boilerplate bar chart.  Instead, we create a variable
+    called *svg* by using d3 to select the body of the page and append an <svg> element to it,
+    setting the width and height using the variables above.  Notice that we only need to give the
+    name of the element, and not the markup tag (eg. '<svg>'), and that we are returned the appended
+    element rather than the parent - this is where d3 differs from jQuery.  We then dynamically
+    append the <rect> elements and bind data to each using the second argument in the function call.
+    We can identify the left edge of the bars via the function used to set attributes.  It can take
+    a second argument *i* which is the index of the element.  Since no <rect> elements exist, the
+    selectAll returns an empty selection at first.  We then bind data and attributes to each of the 
+    elements, so that the selection then contains them.  The call to enter() is what allows the new
+    data and attributes to be bound to a non-existent element.*/
+    var svg = d3.select("body").append("svg").attr("width", w).attr("height", h);
+    svg.selectAll("rect").data(ratData).enter().append("rect")
+      .attr("x", function(x, i){return i * 25;})
+      .attr("y", function(x){return h - x/10 * 1.5;})
+      .attr("height", function(x){return x/10. * 1.5;})
+      .attr("width", 15).attr("fill", "#c9b8d1");
+  </script>
+</body>
+</html>

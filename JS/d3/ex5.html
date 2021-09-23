@@ -1,0 +1,31 @@
+<html>
+<head>
+  <title>
+    Adding Fewer Bars
+  </title>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+  <h1>Using the Exit Method to add Fewer Bars</h1>
+  <p><a href="./ex4.html">Prev</a>  <a href="./ex6.html">Next</a></p>
+  <script>
+    /*Note we use the modified data from the previous example.*/
+    var w = 500;
+    var h = 150;
+    var ratData = [800, 200, 400, 500, 100];
+    var svg = d3.select("body").append("svg").attr("width", w).attr("height", h);
+    svg.selectAll("rect").data(ratData).enter().append("rect")
+      .attr("x", function(x, i){return i * 25;})
+      .attr("y", function(x){return h - x/10 * 1.5;})
+      .attr("height", function(x){return x/10. * 1.5;})
+      .attr("width", 15).attr("fill", "#bcd189");
+    /*We have data for three bars, so the last two bars are not modified from their creation above.
+    We use the exit method to sub-select the last two <rect>s, and the remove method to delete.*/
+    var newData = [600, 300, 100];
+    selxn = svg.selectAll("rect").data(newData);
+    selxn.attr("y", function(x){return h - x/10 * 1.5;})
+      .attr("height", function(x){return x/10. * 1.5;});
+    selxn.exit().remove();
+  </script>
+</body>
+</html>

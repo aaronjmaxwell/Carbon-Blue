@@ -1,0 +1,36 @@
+<html>
+<head>
+  <title>
+    Bar Chart
+  </title>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+  <h1>A Static Bar Chart</h1>
+  <p><a href="./index.html">Prev</a>  <a href="./ex2.html">Next</a></p>
+  <!-- Create a an SVG element to display.  We use the <rect> tag for our rectangles.--!>
+  <svg width="100" height="150">
+    <rect x="0" width="15" fill="#d1c9b8"></rect>
+    <rect x="25" width="15" fill="#d1c9b8"></rect>
+    <rect x="50" width="15" fill="#d1c9b8"></rect>
+    <rect x="75" width="15" fill="#d1c9b8"></rect>
+  </svg>
+  <script>
+    /* Use d3 to draw the bars and add the derived elements to the rectangles.  We first create a
+    variable with an array of numbers.  We then select all rectangles, and use the default indexing
+    to associate the bar heights.  Although we can set the heights to arbitrary values, we use a
+    single valued function whose dummy variable, *x*, takes the array value and applies the map.
+    Since all values are measured in pixels, we apply a linear scaling between the physical data
+    and the axes size.  The variable *h* holds the pixel height, and the _y_ attribute is set so
+    because the (0, 0) is the upper left corner.*/
+    var h = 150;
+    var ratData = [400, 900, 300, 600];
+    d3.selectAll("rect").data(ratData).attr("height", function(x){return x/10. * 1.5;})
+      .attr("y", function(x){return h - x/10 * 1.5;});
+    /* To select a particular element (in order) use d3.select("element") and set the attributes,
+    either in a chain like we have shown or by assigning it to a variable as shown below.*/
+    var el1 = d3.select("rect");
+    el1.attr("opacity", 0.5);
+  </script>
+</body>
+</html>
