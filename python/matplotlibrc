@@ -1,20 +1,19 @@
 ### MATPLOTLIBRC
 
 # Fonts
-font.family: fantasy
-font.weight: normal
-font.size: 8.0
+font.family: Verdana
+font.size: 6
 
 # Colors
-lines.color: 000
-text.color: 444
-axes.labelcolor: 222
-axes.edgecolor: 000
+lines.color: 000000
+text.color: 444444
+axes.labelcolor: 222222
+axes.edgecolor: 000000
 axes.facecolor: none
-xtick.color: 333
-ytick.color: 333
-grid.color: 111
-axes.prop_cycle: cycler('color', ['1f77b4', 'ff7f0e', '2ca02c', 'd62728', '9467bd', '8c564b',       'e377c2', '7f7f7f', 'bcbd22', '17becf'])
+xtick.color: 333333
+ytick.color: 333333
+grid.color: 111111
+axes.prop_cycle: cycler("color", ["1f77b4", "ff7f0e", "2ca02c", "d62728", "9467bd", "8c564b", "e377c2", "7f7f7f", "bcbd22", "17becf"])
 
 # Line Widths
 lines.linewidth: 1.5
@@ -39,14 +38,13 @@ grid.linestyle: --
 
 # Tick Params
 xtick.top: True
-xtick.bottom: True 
+xtick.bottom: True
 xtick.major.size: 2
 xtick.minor.size: 1
 xtick.direction: in
 xtick.minor.visible: True
 xtick.major.pad: 3
 xtick.minor.pad: 3
-xtick.labelsize: 4
 
 ytick.left: True
 ytick.right: True
@@ -56,7 +54,6 @@ ytick.direction: in
 ytick.minor.visible: True
 ytick.major.pad: 3
 ytick.minor.pad: 3
-ytick.labelsize: 4
 
 # Axis
 axes.grid: True
@@ -71,7 +68,7 @@ axes.spines.right: False
 axes.titlesize: 8
 axes.titleweight: 700
 axes.titlepad: 4
-axes.labelsize: 6
+axes.labelsize: 7
 axes.labelpad: 3
 axes.labelweight: 500
 axes.axisbelow: True
@@ -116,9 +113,9 @@ figure.subplot.wspace: 0.1
 figure.subplot.hspace: 0.1
 
 # Saving
-backend: SVG
-svg.image_inline: True
-svg.fonttype: none
+#backend: SVG
+#svg.image_inline: True
+#svg.fonttype: none
 savefig.dpi: figure
 savefig.facecolor: none
 savefig.edgecolor: none
