@@ -1,18 +1,18 @@
-'''
-The logger object can be manipulated directly rather than passing a logging object at init.
-'''
-import multiprocessing as mp
+"""Manipulating the logger
+
+The logger object can be manipulated directly rather than passing a
+logging object at init.
+"""
 import logging
-import sys
+import multiprocessing as mp
 
-def worker():
-    print('little black submarines')
-    sys.stdout.flush()
+import workers
 
-if (__name__ == '__main__'):
+
+if (__name__ == "__main__"):
     mp.log_to_stderr()
     logger = mp.get_logger()
     logger.setLevel(logging.INFO)
-    p = mp.Process(target = worker)
+    p = mp.Process(target=workers.sleepy, args=(0, False, True, "little black submarines"),)
     p.start()
     p.join()

@@ -1,36 +1,28 @@
-"""
-Exit codes can be accessed by the exitcode attribute.
-"""
+"""Exit codes can be accessed by the exitcode attribute."""
 
-import multiprocessing as mp
 import sys
 import time
+import multiprocessing as mp
+
 
 def exit_error():
     sys.exit(1)
-
-
 def exit_ok():
     return
-
-
 def return_value():
     return 1
-
-
 def raises():
-    raise RuntimeError('RuntimeError')
-
-
+    raise RuntimeError("RuntimeError")
 def terminated():
     time.sleep(3)
 
-if (__name__ == '__main__'):
+
+if (__name__ == "__main__"):
     jobs = []
     funcs = [exit_error, exit_ok, return_value, raises, terminated]
     for f in funcs:
-        print('starting ', f.__name__)
-        j = mp.Process(target = f, name = f.__name__)
+        print(f"starting {f.__name__}")
+        j = mp.Process(target=f, name=f.__name__)
         jobs.append(j)
         j.start()
     jobs[-1].terminate()
